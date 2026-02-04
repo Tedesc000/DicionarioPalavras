@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap" rel="stylesheet">
     <title>Dicionário de Palavras</title>
 </head>
 <body>
+    <header>
+        <h1>Contador e dicionário de Palavras</h1>
+    </header>
+
+    <main>
+    <div id="entrada">
+        <textarea type="text" id="texto" placeholder="Digite o texto aqui"></textarea>
+
+        <div id="spaceBtn">
+        <button id="calcularBtn" onclick="calcular()">Calcular dados do texto</button>
+        <button id="selecionarPalavra" onclick="selecionarPalavra()">Selecionar Palavra</button>
+        </div>
+    </div>
+
+    <div id="resultadoDados">
+
+        <div id="dadosTexto">
+        <h2>Dados do Texto</h2>
+        <div id="caixaBorder">
+        <p id="numPalavras">Número de palavras: 0</p>
+        <p id="numNumeros">Número de números: 0</p>
+        <p id="numFrases">Número de frases: 0</p>
+        </div>
+        </div>
+
+        <div id="resultadoDicionario">
+        <h2>Resultado do Dicionário</h2>
+        <p id="palavraSelecionada">Palavra selecionada:</p>
+        <div id="caixaBorder">
+
+        </div>
+        </div>
+
+    </div>
+</main>
     
 </body>
 </html>
