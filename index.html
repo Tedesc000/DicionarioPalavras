@@ -12,11 +12,27 @@
 <body>
     <header>
         <h1>Contador e dicionário de Palavras</h1>
+        <nav>
+            <ul>
+                <li id="saibaMais">Saiba Mais
+                        <ul>
+                            <li id="contato">
+                                Contato
+                            </li>
+                            <li id="sobre">
+                                Sobre o projeto
+                            </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main>
     <div id="entrada">
         <textarea type="text" id="texto" placeholder="Digite o texto aqui"></textarea>
+
+        <div id="resultadoLink"></div>
 
         <div id="spaceBtn">
         <button id="calcularBtn" onclick="calcular()">Calcular dados do texto</button>
