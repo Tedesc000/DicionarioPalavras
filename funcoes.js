@@ -19,32 +19,10 @@
 
 function calcular() {
     let texto = document.getElementById("texto").value;
-    let regex = /\b(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d+)?\b/g;
-    /* Expressão regular para encontrar números no formato brasileiro (ex: 1.000, 2.500, 3.14) e anos
-    // /.../g               → delimitadores da expressão regular com flag global
-    // \b                     → início do limite da palavra (evita pegar números colados em texto)
-    // (?:                    → inicia grupo NÃO capturante principal
-    //     \d+                → números inteiros simples (ex: 2024, 15000)
-    //
-    //     |                  → OU
-    //
-    //     \d{1,3}            → começa com 1 até 3 dígitos (ex: 1, 12, 999)
-    //     (?:                → grupo não capturante para milhar
-    //         \.             → ponto literal (separador de milhar)
-    //         \d{3}          → exatamente 3 dígitos após o ponto
-    //     )+                 → exige pelo menos um grupo ".000" (ex: 1.000, 10.000)
-    // )
-    // (?:                    → grupo não capturante para parte decimal
-    //     ,\d+               → vírgula + números (decimal brasileiro: ,50 ,123)
-    // )?                     → torna o decimal opcional
-    // \b                     → fim do número (limite de palavra)
-    // /g                     → flag global: encontra TODOS os números no texto
-    */
+    let regex = /\b\d{4}\b|\b\d{1,3}(?:\.\d{3})+(?:,\d+)?\b|\b\d+(?:,\d+)?\b/g;
+    //RegEx feito com IA para considerar decimais e anos, coise de mlc isso ai
 
-
-
-
-    let numPalavras = texto.trim().match(/\b[^\d\W]+\b/gu)?.length || 0;
+    let numPalavras = texto.match(/\p{L}+/gu)?.length || 0;
     /* Conta o número de palavras no texto usando match para encontrar palavras (\b[^\d\W]+\b), onde: 
     // \b delimita o início e fim da palavra
     // [^\d\W]+ corresponde a uma sequência de caracteres que não são dígitos (\d) nem caracteres não alfanuméricos (\W), ou seja, apenas letras
@@ -73,11 +51,9 @@ function selecionarPalavra() {
     const resultado = document.getElementById("resultadoLink"); // Captura a div de saída
 
     let texto = textarea.value; // Pega somente o texto digitado, permitindo usar tanto como elemento quanto como string para manipulação
-    let palavras = texto.trim().match(/\b[^\d\W]+\b/gu) || []; // Extrai todas as palavras (ignorando números)
 
-    
     texto = texto.replace(/\p{L}+/gu, palavra => {
-        return `<a href="#" onclick="marcarPalavra(this)">${palavra}</a>`;
+        return `<a href="#" onclick="marcarPalavra(this); consultarDicionario('${palavra}')">${palavra}</a>`;
     });
     // Substitui cada palavra por um link clicável usando replace com uma função de callback, onde cada palavra encontrada é envolvida em uma tag <a> com um evento onclick que chama a função marcarPalavra passando o elemento clicado como argumento
     //anteriormente era usado for, mas isso fazia com que o texto fosse processado palavra por palavra, resultando em múltiplas substituições e perda do formato original. Com replace, o texto é processado de uma vez, mantendo a estrutura e formatando apenas as palavras.
@@ -113,5 +89,45 @@ function voltarAreaTexto() {
     document.getElementById("voltarBtn").style.display = "none";
     document.getElementById("resultadoLink").style.display = "none";
     document.getElementById("texto").style.display = "block";
+}
+
+
+//FUNCIONAMENTO DO DICIONARIO DO WIKTIONARY(dicionario online do mesmo grupo da Wikipedia)
+/*.O usuario seleciona a palavra 
+.O sistema faz requisicao HTTP para o Wikitionay, verificando se a palavra existe no banco
+.O sistema pega o conteudo completo da pagina da palavra, filtrando somente o desejado (definicao, origem, etc), que e retornado em formato de wikitext, ou seja, um formato de texto com marcações especificas do Wiktionary
+.O sistema exibe o resultado na seção "Resultado do Dicionário"
+*/
+
+async function consultarDicionario(palavra) {
+    const url = `https://pt.wiktionary.org/w/api.php?action=query&titles=${encodeURIComponent(palavra)}&prop=extracts&format=json&origin=*`;
+    // Monta a url para o Wiktionary, enviando a palavra selecionada, solicitando todo o conteudo da pagina e que retorne json
+    const resposta = await fetch(url);//espera a resposta do fetch com a url
+    const dados = await resposta.json();//converte o JSON recebido em objeto JavaScript
+    
+    const paginas = dados.query.pages;//solicita a pagina da palavra
+    const paginaID = Object.keys(paginas)[0];//guarda o ID da pagina
+
+    if (paginaID === "-1") {
+        //verifica se o ID é igual a -1, significando que a palavra não existe no dicionário
+        document.getElementById("textoDicionario").innerHTML = `<p>Palavra "${palavra}" não encontrada no dicionário.</p>`;
+        return;
+    }
+
+    const conteudo = paginas[paginaID].extract;//extrai o conteudo HTML da pagina da palavra
+    const conversor = new DOMParser();
+    const documento = conversor.parseFromString(conteudo, "text/html");
+    //Faz uma conversao da string retornada para DOM, de forma que os elementos como h2, p e li possam ser capturados como objetos da arvore
+
+    const classe = documento.querySelector("h2").outerHTML;
+    const descricao = documento.querySelector("p").outerHTML.trim();
+    const significados = documento.querySelector("ol")?.outerHTML;
+    //Captura os elementos da pagina da palavra, contendo os dados a serem exibidos no dicionario, utiliza o outerHTML para o elemento HTML vir junto
+
+
+    console.log(conteudo);
+    //Mostra no console todo o conteudo da pagina para futuras alteracoes
+    document.getElementById("textoDicionario").innerHTML = classe + descricao + significados;
+    //Junta os elementos buscados e os exibe na div do dicionario
 }
 

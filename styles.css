@@ -181,15 +181,15 @@ header nav ul li:hover{
 #dadosTexto{
     background-color: white;
     width: 40vw;
-    height: 30vh;
+    height: 25vh;
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px;
 }
 
 #caixaBorder{
     border: 1px solid black;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     margin: 10px 0;
     height: 70%;
 }
@@ -197,12 +197,13 @@ header nav ul li:hover{
 #caixaBorder p{
     font-size: 1em;
     margin: 5px 0;
+    margin-left: 10px;
 }
 
 #resultadoDicionario{
     background-color: white;
     width: 40vw;
-    height: 40vh;
+    height: 47vh;
     border-radius: 15px;
     padding: 20px;
 }
@@ -224,12 +225,37 @@ header nav ul li:hover{
     font-weight: bold;
 }
 
-#resultadoLink{
+#resultadoLink, #voltarBtn{
     display: none;
 }
 
-#voltarBtn{
-    display: none;
+#caixaDicionario{
+    font-size: 0.9em;
+    height: 100%;
+    overflow-y: auto;
 }
+
+
+#textoDicionario h2{
+    color: rgb(29, 61, 29);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+#textoDicionario b{
+    color: rgb(29, 61, 29);
+}
+
+#textoDicionario p{
+    text-align: center;
+}
+
+#textoDicionario li{
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+
 
 
