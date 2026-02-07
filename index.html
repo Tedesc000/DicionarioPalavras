@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Share+Tech&display=swap" rel="stylesheet">
     <title>Dicionário de Palavras</title>
 </head>
 <body>
@@ -14,6 +14,7 @@
         <h1>Contador e dicionário de Palavras</h1>
         <nav>
             <ul>
+                <li>Tutorial</li>
                 <li id="saibaMais">Saiba Mais
                         <ul>
                             <li id="contato">
@@ -37,6 +38,7 @@
         <div id="spaceBtn">
         <button id="calcularBtn" onclick="calcular()">Calcular dados do texto</button>
         <button id="selecionarPalavra" onclick="selecionarPalavra()">Selecionar Palavra</button>
+        <button onclick="voltarAreaTexto()" id="voltarBtn">Voltar para a área de texto</button>
         </div>
     </div>
 
@@ -53,7 +55,12 @@
 
         <div id="resultadoDicionario">
         <h2>Resultado do Dicionário</h2>
-        <p id="palavraSelecionada">Palavra selecionada:</p>
+        <div id="exibirPalavra">
+            <p id="palavraSelecionada">
+                Palavra selecionada:
+                <div id="divPalavraSelecionada"></div>
+            </p>
+        </div>
         <div id="caixaBorder">
 
         </div>

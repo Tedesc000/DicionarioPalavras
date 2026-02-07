@@ -53,8 +53,9 @@ function calcular() {
     , 'g' para busca global, trim() remove espaços extras no início e fim do texto, se não encontrar nada retorna 0*/
     let numNumeros = (texto.trim().match(regex) || []).length;// Conta o número de números no texto usando match para encontrar dígitos (\d+), 'g' para busca global, se não encontrar nada retorna array vazio
 
-    let numFrases = (texto.split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÀÂÊÔÃÕÇ])/)).length;
-    // Conta o número de frases dividindo o texto em pontos finais, exclamações ou interrogações seguidos por um espaço e uma letra maiúscula (considerando acentuação). O split cria um array de frases e .length conta o número de elementos no array
+    let frases = texto.trim().match(/[.!?]+/g) || [];
+    let numFrases = frases.length;
+    // Conta o número de frases encontrando occorrências de '.', '!' ou '?' no texto. O match retorna um array com cada fim de frase ou um array vazio se não houver nenhuma
 
     document.getElementById("numPalavras").textContent = `Número de palavras: ${numPalavras}`;
     document.getElementById("numNumeros").textContent = `Número de números: ${numNumeros}`;
@@ -62,20 +63,25 @@ function calcular() {
     // Atualiza o conteúdo dos elementos HTML com os resultados calculados atraves de template strings
 
 }
+
+
 function selecionarPalavra() {
+    document.getElementById("selecionarPalavra").style.display = "none";
+    document.getElementById("voltarBtn").style.display = "block";
+
     const textarea = document.getElementById("texto"); // Captura o elemento textarea
     const resultado = document.getElementById("resultadoLink"); // Captura a div de saída
 
     let texto = textarea.value; // Pega somente o texto digitado, permitindo usar tanto como elemento quanto como string para manipulação
-    let palavras = texto.trim().match(/\b[^\d\W]+\b/gu); // Extrai todas as palavras (ignorando números)
+    let palavras = texto.trim().match(/\b[^\d\W]+\b/gu) || []; // Extrai todas as palavras (ignorando números)
 
-    for (let i = 0; i < palavras.length; i++) { // Percorre cada palavra encontrada
-        let palavra = palavras[i]; // Palavra atual do loop
-        // Cria um link que chama consultarDicionario e marcarPalavra ao clicar
-        let palavraLink = `<a href="#" onclick=" marcarPalavra(this)">${palavra}</a>`;
-        // Substitui todas as ocorrências da palavra pelo link
-        texto = texto.replace(new RegExp(`\\b${palavra}\\b`, 'g'), palavraLink);
-    }
+    
+    texto = texto.replace(/\p{L}+/gu, palavra => {
+        return `<a href="#" onclick="marcarPalavra(this)">${palavra}</a>`;
+    });
+    // Substitui cada palavra por um link clicável usando replace com uma função de callback, onde cada palavra encontrada é envolvida em uma tag <a> com um evento onclick que chama a função marcarPalavra passando o elemento clicado como argumento
+    //anteriormente era usado for, mas isso fazia com que o texto fosse processado palavra por palavra, resultando em múltiplas substituições e perda do formato original. Com replace, o texto é processado de uma vez, mantendo a estrutura e formatando apenas as palavras.
+
     textarea.style.display = "none"; // Esconde o textarea após processar
     resultado.style.display = "block"; // Mostra a div com os links
 
@@ -90,8 +96,22 @@ function marcarPalavra(elemento) {
             a.style.background = "";
         }
         else{
-            a.style.backgroundColor = "rgb(29, 61, 29)"; // Destaca a palavra clicada com fundo
+            a.style.backgroundColor = "rgb(79, 137, 79)"; // Destaca a palavra clicada com fundo
+            a.style.borderRadius = "5px";
+            a.style.padding = "2px 5px";
         }
     });
+
+    let exibirPalavra = document.getElementById("divPalavraSelecionada"); // Captura o elemento onde será exibida a palavra selecionada
+    exibirPalavra.textContent = `${elemento.textContent}`; // Exibe a palavra clicada no elemento de saída
+
+
+}
+
+function voltarAreaTexto() {
+    document.getElementById("selecionarPalavra").style.display = "block";
+    document.getElementById("voltarBtn").style.display = "none";
+    document.getElementById("resultadoLink").style.display = "none";
+    document.getElementById("texto").style.display = "block";
 }
 

@@ -29,8 +29,9 @@ main h2{
 
 header{
     width: 100vw;
+    min-height: 10vh;
     background-color: white;
-    padding: 10px 20px;
+    padding: 0 10px;
     margin: auto;
     margin-bottom: 10px;
     text-align: center;
@@ -39,53 +40,69 @@ header{
     align-items: center;
     font-weight: bold;
 
+    font-family: 'Bebas Neue', cursive;
+    color: rgb(29, 61, 29);
+    font-size: 1.3em;
+
 }
+
 
 header nav ul{
     display: flex;
-    gap: 48px;
+    gap: 10px;
     list-style: none;
     margin-right: 30px;
     width: 100%;
+    align-items: center;
 }
 
 header nav ul li{
     cursor: pointer;
     position: relative;
-    padding: 4px 0;
+    padding: 14px 5px;
+    font-size: 1.3em;
+    align-items: center;
+}
+
+header nav ul li:hover{
+    color: rgb(29, 61, 29);
+    background-color: rgb(194, 126, 74);
 }
 
 #saibaMais{
     position: relative;
 }
 
+
 #saibaMais ul{
     display: none;
     position: absolute;
     background-color: white;
     top: 100%;
-    left: 0;
-    gap: 5px;
-    border-radius: 15px;
     width: 100%;
-
+    left: 0;
+    gap: 2px;
+    width: 100%;
+    font-size: 0.8rem;
 }
 
 #saibaMais:hover ul{
     display: flex;
     flex-direction: column;
-    font-size: 0.8rem;
+    box-shadow: 8px 8px 12px rgba(0,0,0,0.3);
+}
+
+#saibaMais ul li{
+    padding: 10px 5px;
+    width: 100%;
 }
 
 #saibaMais:hover ul li:hover{
     background-color: rgb(194, 126, 74);
-    color: black;
+    padding: 10px 5px;
 }
 
-#saibaMais ul #sobre{
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
+
 
 
 
@@ -118,6 +135,10 @@ header nav ul li{
 #entrada button:hover{
     color: black;
     transform: scale(1.1);
+}
+
+#entrada button:active{
+    transform: scale(0.95);
 }
 
 #spaceBtn{
@@ -186,11 +207,28 @@ header nav ul li{
     padding: 20px;
 }
 
+#exibirPalavra{
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #palavraSelecionada{
-    margin: 10px 0;
+    margin: 10px;
+}
+#divPalavraSelecionada{
+    color: rgb(29, 61, 29);
+    font-weight: bold;
 }
 
 #resultadoLink{
+    display: none;
+}
+
+#voltarBtn{
     display: none;
 }
 
