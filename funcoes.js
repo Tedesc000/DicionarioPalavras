@@ -71,7 +71,7 @@ function marcarPalavra(elemento) {
         if (a.textContent !== elemento.textContent) { // Verifica se o link atual é diferente do clicado, se for diferente, remove o destaque, caso contrário, mantém o destaque para a palavra clicada
             a.style.background = "";
         }
-        else{
+        else {
             a.style.backgroundColor = "rgb(79, 137, 79)"; // Destaca a palavra clicada com fundo
             a.style.borderRadius = "5px";
             a.style.padding = "2px 5px";
@@ -104,7 +104,7 @@ async function consultarDicionario(palavra) {
     // Monta a url para o Wiktionary, enviando a palavra selecionada, solicitando todo o conteudo da pagina e que retorne json
     const resposta = await fetch(url);//espera a resposta do fetch com a url
     const dados = await resposta.json();//converte o JSON recebido em objeto JavaScript
-    
+
     const paginas = dados.query.pages;//solicita a pagina da palavra
     const paginaID = Object.keys(paginas)[0];//guarda o ID da pagina
 
@@ -131,13 +131,13 @@ async function consultarDicionario(palavra) {
     //Junta os elementos buscados e os exibe na div do dicionario
 }
 
-function fecharPopUp(elemento){
+function fecharPopUp(elemento) {
     document.getElementById(elemento).style.display = "none";
     document.getElementById("telaBlock").style.display = "none";
-    
+
 }
 
-function abrirPopUp(elemento){
+function abrirPopUp(elemento) {
     document.getElementById(elemento).style.display = "flex";
     document.getElementById("telaBlock").style.display = "flex";
 }

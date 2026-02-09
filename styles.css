@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: rgb(152, 102, 82);
     width: 100vw;
     height: 100vh;
@@ -15,7 +15,7 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
-main{
+main {
     width: 100vw;
     height: 90vh;
     display: flex;
@@ -23,11 +23,11 @@ main{
     justify-content: center;
 }
 
-main h2{
+main h2 {
     text-align: center;
 }
 
-header{
+header {
     width: 100vw;
     min-height: 10vh;
     background-color: white;
@@ -47,7 +47,7 @@ header{
 }
 
 
-header nav ul{
+header nav ul {
     display: flex;
     gap: 10px;
     list-style: none;
@@ -57,7 +57,7 @@ header nav ul{
 
 }
 
-header nav ul li{
+header nav ul li {
     cursor: pointer;
     position: relative;
     padding: 0;
@@ -65,8 +65,9 @@ header nav ul li{
     align-items: center;
 }
 
-header nav ul li button{
-    all: unset;/*Remove o estilo padrao do button HTML, herdando o estilo da lista*/
+header nav ul li button {
+    all: unset;
+    /*Remove o estilo padrao do button HTML, herdando o estilo da lista*/
     display: block;
     width: 100%;
     height: 100%;
@@ -74,7 +75,7 @@ header nav ul li button{
     cursor: pointer;
 }
 
-header nav ul li ul li button{
+header nav ul li ul li button {
     all: unset;
     display: block;
     width: 100%;
@@ -82,17 +83,17 @@ header nav ul li ul li button{
     cursor: pointer;
 }
 
-header nav ul li:hover{
+header nav ul li:hover {
     color: rgb(29, 61, 29);
     background-color: rgb(194, 126, 74);
 }
 
-#saibaMais{
+#saibaMais {
     position: relative;
 }
 
 
-#saibaMais ul{
+#saibaMais ul {
     display: none;
     position: absolute;
     background-color: white;
@@ -104,18 +105,18 @@ header nav ul li:hover{
     font-size: 0.8rem;
 }
 
-#saibaMais:hover ul{
+#saibaMais:hover ul {
     display: flex;
     flex-direction: column;
-    box-shadow: 8px 8px 12px rgba(0,0,0,0.3);
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.3);
 }
 
-#saibaMais ul li{
+#saibaMais ul li {
     padding: 10px 5px;
     width: 100%;
 }
 
-#saibaMais:hover ul li:hover{
+#saibaMais:hover ul li:hover {
     background-color: rgb(194, 126, 74);
     padding: 10px 5px;
 }
@@ -124,7 +125,7 @@ header nav ul li:hover{
 
 
 
-#entrada{
+#entrada {
     background-color: white;
     width: 50vw;
     height: 75vh;
@@ -136,7 +137,7 @@ header nav ul li:hover{
     flex-wrap: wrap;
 }
 
-#entrada button{
+#entrada button {
     width: 40%;
     height: 40px;
     border-radius: 15px;
@@ -150,16 +151,16 @@ header nav ul li:hover{
     transition: transform 0.3s ease;
 }
 
-#entrada button:hover{
+#entrada button:hover {
     color: black;
     transform: scale(1.1);
 }
 
-#entrada button:active{
+#entrada button:active {
     transform: scale(0.95);
 }
 
-#spaceBtn{
+#spaceBtn {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -167,7 +168,8 @@ header nav ul li:hover{
     align-items: center;
 }
 
-#texto, #resultadoLink{
+#texto,
+#resultadoLink {
     width: 100%;
     height: 50vh;
     border-radius: 15px;
@@ -180,14 +182,14 @@ header nav ul li:hover{
     text-align: justify;
 }
 
-#resultadoLink a{
+#resultadoLink a {
     color: black;
     font-weight: bold;
     text-decoration: underline 2px rgb(29, 61, 29);
 
 }
 
-#resultadoDados{
+#resultadoDados {
     width: 40vw;
     height: 75vh;
     border-radius: 15px;
@@ -196,7 +198,7 @@ header nav ul li:hover{
     justify-content: space-between;
 }
 
-#dadosTexto{
+#dadosTexto {
     background-color: white;
     width: 40vw;
     height: 25vh;
@@ -204,7 +206,7 @@ header nav ul li:hover{
     padding: 10px;
 }
 
-#caixaBorder{
+#caixaBorder {
     border: 1px solid black;
     border-radius: 10px;
     padding: 5px;
@@ -212,13 +214,13 @@ header nav ul li:hover{
     height: 70%;
 }
 
-#caixaBorder p{
+#caixaBorder p {
     font-size: 1em;
     margin: 5px 0;
     margin-left: 10px;
 }
 
-#resultadoDicionario{
+#resultadoDicionario {
     background-color: white;
     width: 40vw;
     height: 47vh;
@@ -226,7 +228,7 @@ header nav ul li:hover{
     padding: 20px;
 }
 
-#exibirPalavra{
+#exibirPalavra {
     width: 100%;
     height: 30px;
     border-radius: 15px;
@@ -235,57 +237,62 @@ header nav ul li:hover{
     justify-content: center;
 }
 
-#palavraSelecionada{
+#palavraSelecionada {
     margin: 10px;
 }
-#divPalavraSelecionada{
+
+#divPalavraSelecionada {
     color: rgb(29, 61, 29);
     font-weight: bold;
 }
 
-#resultadoLink, #voltarBtn{
+#resultadoLink,
+#voltarBtn {
     display: none;
 }
 
-#caixaDicionario{
+#caixaDicionario {
     font-size: 0.9em;
     height: 100%;
     overflow-y: auto;
 }
 
 
-#textoDicionario h2{
+#textoDicionario h2 {
     color: rgb(29, 61, 29);
     font-family: 'Bebas Neue', cursive;
     font-size: 1.8em;
     text-align: center;
 }
 
-#textoDicionario b{
+#textoDicionario b {
     color: rgb(29, 61, 29);
 }
 
-#textoDicionario p{
+#textoDicionario p {
     text-align: center;
 }
 
-#textoDicionario li{
+#textoDicionario li {
     margin-bottom: 15px;
     list-style: none;
 }
 
-#telaBlock{
-    position: fixed;/*Necessario para utilizar o z-index, para ter como base*/
-    inset: 0;/*left, top, bottom e right tudo 0*/
-    background: rgba(0,0,0,.4);
+#telaBlock {
+    position: fixed;
+    /*Necessario para utilizar o z-index, para ter como base*/
+    inset: 0;
+    /*left, top, bottom e right tudo 0*/
+    background: rgba(0, 0, 0, .4);
     z-index: 999;
 }
 
-.popUp{
+.popUp {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);/*Centraliza bem no meio da tela*/
+    transform: translate(-50%, -50%);
+    /*Centraliza bem no meio da tela*/
     display: none;
     width: 70vw;
     min-height: 50vh;
@@ -298,7 +305,7 @@ header nav ul li:hover{
     z-index: 1002;
 }
 
-.popUp h2{
+.popUp h2 {
     color: rgb(29, 61, 29);
     background-color: rgb(194, 126, 74);
     font-family: 'Bebas Neue', cursive;
@@ -309,34 +316,34 @@ header nav ul li:hover{
     text-align: center;
 }
 
-.popUp p{
+.popUp p {
     padding: 10px;
     font-weight: bold;
 }
 
-.popUp p:nth-of-type(2){
+.popUp p:nth-of-type(2) {
     background-color: rgb(194, 126, 74);
     width: 100%;
     text-align: center;
 }
 
-.popUp ul{
+.popUp ul {
     padding: 15px;
     text-align: justify;
 }
 
-.popUp li{
+.popUp li {
     margin-bottom: 15px;
 }
 
-.tamBtn{
+.tamBtn {
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
 
-.fecharBtn{
+.fecharBtn {
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -345,54 +352,58 @@ header nav ul li:hover{
     background-color: transparent;
     transition: transform 1s ease, background-color 0.6s ease;
 }
-.fecharBtn svg{
+
+.fecharBtn svg {
     transition: transform 0.4s ease;
 }
 
-.fecharBtn:hover{
+.fecharBtn:hover {
     background-color: rgb(194, 126, 74);
 }
 
-.fecharBtn:active{
+.fecharBtn:active {
     transform: scale(0.6);
 }
 
-.fecharBtn:hover svg{
+.fecharBtn:hover svg {
     transform: scale(1.3);
 }
 
-#nome{
+#nome {
     font-size: 1.5em;
 }
 
-#tutorial{
+#tutorial {
     display: flex;
 }
 
-#contato ul{
+#contato ul {
     list-style: none;
 }
-#contato a{
+
+#contato a {
     color: black;
 }
 
-#email, #github, #instagram{
-    display: inline-block; /*elementos <a> possuem display inline, portanto o scale nao funciona direito, botar inline-block*/
+#email,
+#github,
+#instagram {
+    display: inline-block;
+    /*elementos <a> possuem display inline, portanto o scale nao funciona direito, botar inline-block*/
     transition: transform 0.5s ease;
 }
-#email:hover{
+
+#email:hover {
     color: rgb(134, 60, 60);
     transform: scale(1.03);
 }
-#github:hover{
+
+#github:hover {
     color: rgb(96, 101, 101);
     transform: scale(1.03);
 }
-#instagram:hover{
+
+#instagram:hover {
     color: rgb(142, 72, 83);
     transform: scale(1.03);
 }
-
-
-
-
