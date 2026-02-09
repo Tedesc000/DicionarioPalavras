@@ -54,14 +54,32 @@ header nav ul{
     margin-right: 30px;
     width: 100%;
     align-items: center;
+
 }
 
 header nav ul li{
     cursor: pointer;
     position: relative;
-    padding: 14px 5px;
+    padding: 0;
     font-size: 1.3em;
     align-items: center;
+}
+
+header nav ul li button{
+    all: unset;/*Remove o estilo padrao do button HTML, herdando o estilo da lista*/
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 17px 5px;
+    cursor: pointer;
+}
+
+header nav ul li ul li button{
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    cursor: pointer;
 }
 
 header nav ul li:hover{
@@ -254,6 +272,125 @@ header nav ul li:hover{
 #textoDicionario li{
     margin-bottom: 15px;
     list-style: none;
+}
+
+#telaBlock{
+    position: fixed;/*Necessario para utilizar o z-index, para ter como base*/
+    inset: 0;/*left, top, bottom e right tudo 0*/
+    background: rgba(0,0,0,.4);
+    z-index: 999;
+}
+
+.popUp{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);/*Centraliza bem no meio da tela*/
+    display: none;
+    width: 70vw;
+    min-height: 50vh;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 15px;
+    z-index: 1002;
+}
+
+.popUp h2{
+    color: rgb(29, 61, 29);
+    background-color: rgb(194, 126, 74);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5em;
+    padding: 7px;
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.popUp p{
+    padding: 10px;
+    font-weight: bold;
+}
+
+.popUp p:nth-of-type(2){
+    background-color: rgb(194, 126, 74);
+    width: 100%;
+    text-align: center;
+}
+
+.popUp ul{
+    padding: 15px;
+    text-align: justify;
+}
+
+.popUp li{
+    margin-bottom: 15px;
+}
+
+.tamBtn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.fecharBtn{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: rgb(29, 61, 29);
+    background-color: transparent;
+    transition: transform 1s ease, background-color 0.6s ease;
+}
+.fecharBtn svg{
+    transition: transform 0.4s ease;
+}
+
+.fecharBtn:hover{
+    background-color: rgb(194, 126, 74);
+}
+
+.fecharBtn:active{
+    transform: scale(0.6);
+}
+
+.fecharBtn:hover svg{
+    transform: scale(1.3);
+}
+
+#nome{
+    font-size: 1.5em;
+}
+
+#tutorial{
+    display: flex;
+}
+
+#contato ul{
+    list-style: none;
+}
+#contato a{
+    color: black;
+}
+
+#email, #github, #instagram{
+    display: inline-block; /*elementos <a> possuem display inline, portanto o scale nao funciona direito, botar inline-block*/
+    transition: transform 0.5s ease;
+}
+#email:hover{
+    color: rgb(134, 60, 60);
+    transform: scale(1.03);
+}
+#github:hover{
+    color: rgb(96, 101, 101);
+    transform: scale(1.03);
+}
+#instagram:hover{
+    color: rgb(142, 72, 83);
+    transform: scale(1.03);
 }
 
 

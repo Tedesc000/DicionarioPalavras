@@ -131,3 +131,13 @@ async function consultarDicionario(palavra) {
     //Junta os elementos buscados e os exibe na div do dicionario
 }
 
+function fecharPopUp(elemento){
+    document.getElementById(elemento).style.display = "none";
+    document.getElementById("telaBlock").style.display = "none";
+    
+}
+
+function abrirPopUp(elemento){
+    document.getElementById(elemento).style.display = "flex";
+    document.getElementById("telaBlock").style.display = "flex";
+}
