@@ -3,12 +3,13 @@
     require_once "conexao.php";
 
     //verifica se a palavra veio por POST
-    if (!isset($_POST['palavra'])) {
-        exit("Nenhuma palavra recebida");
+    if (!isset($_POST['palavra']) || !isset($_POST['significado'])) {
+        exit("Nenhuma palavra ou significado recebido");
     }
 
     //recebe a palavra enviada pelo js
     $palavra = trim($_POST['palavra']);
+    $significado = trim($_POST['significado']);
 
     //consulta da palavra
     $sql = "SELECT id FROM palavras WHERE palavra = ?";
@@ -26,10 +27,10 @@
 
     if ($resultado->num_rows === 0) {
         
-        $sqlInsert = "INSERT INTO palavras (palavra) VALUES (?)";
+        $sqlInsert = "INSERT INTO palavras (palavra, significado) VALUES (?, ?)";
         //usa outro stmt pois é um objeto statement diferente, neste caso de insert, e o que ja foi utilizado ja esta relacionado a outra consulta
         $stmtInsert = $conn->prepare($sqlInsert);
-        $stmtInsert->bind_param("s", $palavra);
+        $stmtInsert->bind_param("ss", $palavra,$significado);
         $stmtInsert->execute();
 
         echo "Palavra inserida com sucesso";

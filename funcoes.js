@@ -53,7 +53,7 @@ function selecionarPalavra() {
     let texto = textarea.value; // Pega somente o texto digitado, permitindo usar tanto como elemento quanto como string para manipulação
 
     texto = texto.replace(/\p{L}+/gu, palavra => {
-        return `<a href="#" onclick="marcarPalavra(this); consultarDicionario('${palavra}'); confereBanco('${palavra}')">${palavra}</a>`;
+        return `<a href="#" onclick="marcarPalavra(this); consultarDicionario('${palavra}')">${palavra}</a>`;
     });
     // Substitui cada palavra por um link clicável usando replace com uma função de callback, onde cada palavra encontrada é envolvida em uma tag <a> com um evento onclick que chama a função marcarPalavra passando o elemento clicado como argumento
     //anteriormente era usado for, mas isso fazia com que o texto fosse processado palavra por palavra, resultando em múltiplas substituições e perda do formato original. Com replace, o texto é processado de uma vez, mantendo a estrutura e formatando apenas as palavras.
@@ -124,11 +124,15 @@ async function consultarDicionario(palavra) {
     const significados = documento.querySelector("ol")?.outerHTML;
     //Captura os elementos da pagina da palavra, contendo os dados a serem exibidos no dicionario, utiliza o outerHTML para o elemento HTML vir junto
 
+    const conteudoLimpo = classe + descricao + significados;
 
     console.log(conteudo);
     //Mostra no console todo o conteudo da pagina para futuras alteracoes
-    document.getElementById("textoDicionario").innerHTML = classe + descricao + significados;
+    document.getElementById("textoDicionario").innerHTML = conteudoLimpo;
     //Junta os elementos buscados e os exibe na div do dicionario
+
+    confereBanco(palavra, conteudoLimpo);
+    //confere a palavra no banco de dados
 }
 
 function fecharPopUp(elemento) {
@@ -142,8 +146,9 @@ function abrirPopUp(elemento) {
     document.getElementById("telaBlock").style.display = "flex";
 }
 
-function confereBanco(palavra){
+function confereBanco(palavra, significado){
     console.log("Palavra enviada: ", palavra);
+    console.log("Significado enviado: ", significado);
     fetch("php/salvar_palavra.php",{
         //cria uma requisicao HTTP com o destino
         method: "POST",//dados vao no corpo da requisicao
@@ -151,7 +156,7 @@ function confereBanco(palavra){
             "Content-Type": "application/x-www-form-urlencoded"
             //navegador diz ao PHP que os dados vao estar no formato dado=valor, se nao botar, POST vai vazio
         },
-        body: "palavra=" + encodeURIComponent(palavra)
+        body: "palavra=" + encodeURIComponent(palavra) + "&significado=" + encodeURIComponent(significado)
         //codifica a palavra selecionada e envia ao php no modo palavra=palavra
     })
     //.then usado pois espera o PHP responder para executar
