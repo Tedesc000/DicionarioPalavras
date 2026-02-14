@@ -407,3 +407,26 @@ header nav ul li:hover {
     color: rgb(142, 72, 83);
     transform: scale(1.03);
 }
+
+#carregandoBola {
+    /* container do spinner, permite ele ter tamanho visivel */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ddd;/*cria um anel cinza*/
+    border-top: 5px solid rgb(29, 61, 29);/*cria um destaque verde somente no topo*/
+    border-radius: 50%;
+    animation: girar 1.5s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);/*gira o elemento em 360 graus, dando a impressao de carregamento*/
+    }
+}

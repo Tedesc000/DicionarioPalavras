@@ -36,7 +36,7 @@ function calcular() {
     // Conta o número de frases encontrando occorrências de '.', '!' ou '?' no texto. O match retorna um array com cada fim de frase ou um array vazio se não houver nenhuma
 
     document.getElementById("numPalavras").textContent = `Número de palavras: ${numPalavras}`;
-    document.getElementById("numNumeros").textContent = `Número de números: ${numNumeros}`;
+    document.getElementById("numNumeros").textContent = `Total de números: ${numNumeros}`;
     document.getElementById("numFrases").textContent = `Número de frases: ${numFrases}`;
     // Atualiza o conteúdo dos elementos HTML com os resultados calculados atraves de template strings
 
@@ -100,8 +100,12 @@ function voltarAreaTexto() {
 */
 
 async function consultarDicionario(palavra) {
+    const loader = document.getElementById("carregandoBola");
     const url = `https://pt.wiktionary.org/w/api.php?action=query&titles=${encodeURIComponent(palavra)}&prop=extracts&format=json&origin=*`;
     // Monta a url para o Wiktionary, enviando a palavra selecionada, solicitando todo o conteudo da pagina e que retorne json
+
+    loader.style.display = "flex"
+
     const resposta = await fetch(url);//espera a resposta do fetch com a url
     const dados = await resposta.json();//converte o JSON recebido em objeto JavaScript
 
@@ -110,6 +114,7 @@ async function consultarDicionario(palavra) {
 
     if (paginaID === "-1") {
         //verifica se o ID é igual a -1, significando que a palavra não existe no dicionário
+        loader.style.display = "none";
         document.getElementById("textoDicionario").innerHTML = `<p>Palavra "${palavra}" não encontrada no dicionário.</p>`;
         return;
     }
@@ -128,6 +133,7 @@ async function consultarDicionario(palavra) {
 
     console.log(conteudo);
     //Mostra no console todo o conteudo da pagina para futuras alteracoes
+    loader.style.display = "none";
     document.getElementById("textoDicionario").innerHTML = conteudoLimpo;
     //Junta os elementos buscados e os exibe na div do dicionario
 
@@ -149,7 +155,7 @@ function abrirPopUp(elemento) {
 function confereBanco(palavra, significado){
     console.log("Palavra enviada: ", palavra);
     console.log("Significado enviado: ", significado);
-    fetch("php/salvar_palavra.php",{
+    fetch("../php/salvar_palavra.php",{
         //cria uma requisicao HTTP com o destino
         method: "POST",//dados vao no corpo da requisicao
         headers: {
