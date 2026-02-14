@@ -60,7 +60,6 @@ header nav ul {
 header nav ul li {
     cursor: pointer;
     position: relative;
-    padding: 0;
     font-size: 1.3em;
     align-items: center;
 }
@@ -71,8 +70,9 @@ header nav ul li button {
     display: block;
     width: 100%;
     height: 100%;
-    padding: 17px 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-right: 30px;
 }
 
 header nav ul li ul li button {
@@ -90,6 +90,7 @@ header nav ul li:hover {
 
 #saibaMais {
     position: relative;
+    padding: 10px;
 }
 
 
@@ -112,13 +113,13 @@ header nav ul li:hover {
 }
 
 #saibaMais ul li {
-    padding: 10px 5px;
+    padding: 5px;
     width: 100%;
 }
 
 #saibaMais:hover ul li:hover {
     background-color: rgb(194, 126, 74);
-    padding: 10px 5px;
+    padding: 5px;
 }
 
 
@@ -427,6 +428,6 @@ header nav ul li:hover {
 
 @keyframes girar {
     to {
-        transform: rotate(360deg);/*gira o elemento em 360 graus, dando a impressao de carregamento*/
+        transform: rotate(360deg);/*gira o elemento em 360 graus, dando a impressao de carregamento.*/
     }
 }
